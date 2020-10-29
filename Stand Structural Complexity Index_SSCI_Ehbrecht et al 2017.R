@@ -3,8 +3,8 @@
 ##---------------------------------------------------------------------------------------------------------------------
 ## The current version is tailored to point clouds that were scanned with a FARO Focus 120 or Faro M70 scanner and exported 
 ## with the scanner specific software FARO Scene (v.7.1). For data acquisition, the scanner should be placed on a tripod 
-## in ~1.3 m above ground and set to scan a field of view of 300° degrees vertically and 360° horizontally with an angular 
-## step width of 0.03515625°. Each scan should then be imported to the hardware-specific software FARO SCENE 
+## in ~1.3 m above ground and set to scan a field of view of 300Â° degrees vertically and 360Â° horizontally with an angular 
+## step width of 0.03515625Â°. Each scan should then be imported to the hardware-specific software FARO SCENE 
 ## (Faro Technologies Inc., Lake Mary, USA, v.7.1.1.81) and standard filter algorithms should be applied to each scan file 
 ## to erase stray and erroneous points from the point cloud. Point clouds should be exported as 5-columned .xyz files, 
 ## incl. the vertical and horizontal laser beam direction stored in the first two columns, respectively. Column 3,4 and 5 
@@ -66,7 +66,7 @@ j<-files[1]
   
   ##---------------------------------------------------------------------------------------------------------------------
   ## Constructing cross-sectional polygons
-  ## In total, there are 10236 horizontal beam directions (360°/0.03515625°)
+  ## In total, there are 10236 horizontal beam directions (360Â°/0.03515625Â°)
   ## The current version works with only every 4th horizontal and vertical laser beam (as exported from FARO Scene)
 
   horizontal_1<-seq(0,5116,4)
@@ -118,8 +118,6 @@ j<-files[1]
     out$area<-area
     out$peri<-peri
     out$frac<-frac
-    #out$Scheibennummer <- i
-    #out$was<-row.names(out)
     rownames(out)<-NULL
 
     
@@ -129,16 +127,7 @@ j<-files[1]
     
   }) 
   
-  # Creating GIF of cross-sectional polygons
-  polys<-lapply(result, '[[', 2) 
-  punkte<-lapply(result, '[[', 3) 
-  
-  dat<-lapply(result,'[[', 1) 
-  dat<-do.call(rbind,dat)
-  dat<-as.data.frame(t(colMeans(dat)))
-  dat$name<- gsub(".xyz","",basename(j))
-  dat$file	<-j
-  
+
   ##---------------------------------------------------------------------------------------------------------------------
   ## Computing the Effective number of layers - ENL (Ehbrecht et al. 2016)
 
@@ -173,8 +162,7 @@ j<-files[1]
                      "enl", "ssci")],file= gsub(".xyz$",".csv",j),row.names = F)
   
 
-#} # ende über alle files
-
+#} 
 
 end_time <- Sys.time()
 end_time - start_time
