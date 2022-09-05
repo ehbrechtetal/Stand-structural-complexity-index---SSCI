@@ -11,7 +11,7 @@
 ## should be x, y, and z coordinates. The current version of the algorithm works with only every 4th vertical and horizontal 
 ## beam direction (16th of original scan resolution).
 ##
-## Update to version 1.3 now includes the computation of canopy openness for an opening angle of 60° above the scanner. 
+## Update to version 1.3 now includes the computation of canopy openness for an opening angle of 60Â° above the scanner. 
 ## Canopy openness is computed by simulating a hemispherical photo and calculated as the percentage of sky pixels 
 ## in the simulated hemispherical photograph
 ##---------------------------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ library(raster)
 # Specify directory where .xyz files are located
 ##---------------------------------------------------------------------------------------------------------------------
 
-directory<-"D:/Abteilung/Masterarbeiten/Reißig/Scene Exports/" 
+directory<-"..." 
 
 files<-list.files(directory,full.names = T,pattern="\\.xyz$")
 j<-files[1]
@@ -102,7 +102,7 @@ for(j in files){
   
   
   ##---------------------------------------------------------------------------------------------------------------------
-  # Computation of canopy openness for 60° opening angle above scanner
+  # Computation of canopy openness for 60Â° opening angle above scanner
   ##---------------------------------------------------------------------------------------------------------------------
   
   hemi<-data.frame(radius_polar=2*tan(abs(deg2rad(90)-pointcloud$phi)/2),
